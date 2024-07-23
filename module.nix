@@ -70,14 +70,14 @@ in
       virtualisation.oci-containers."actual-server" = {
         autoStart = true;
         image = "docker.io/actualbudget/actual-server:latest";
-        ports = ["${cfg.port}:5006"];
+        ports = ["${builtins.toString cfg.port}:5006"];
         environment = {
-          ACTUAL_PORT = "${cfg.port}";
-          ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB = "${cfg.uploadFileSyncLimit}";
-          ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB = "${cfg.uploadEncryptedFileSyncLimit}";
-          ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB = "${cfg.uploadFileLimit}";
+          ACTUAL_PORT = "${builtins.toString cfg.port}";
+          ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB = "${builtins.toString cfg.uploadFileSyncLimit}";
+          ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB = "${builtins.toString cfg.uploadEncryptedFileSyncLimit}";
+          ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB = "${builtins.toString cfg.uploadFileLimit}";
         };
-        volumes = ["${cfg.dataPath}:/data"];
+        volumes = ["${builtins.toString cfg.dataPath}:/data"];
       };
     }
     (mkIf cfg.configureNginx {
@@ -96,7 +96,7 @@ in
             enableACME = true;
             forceSSL = true;
             locations."/" = {
-              proxyPass = "http://127.0.0.1:${cfg.port}";
+              proxyPass = "http://127.0.0.1:${builtins.toString cfg.port}";
               proxyWebsockets = true;
             };
           };
