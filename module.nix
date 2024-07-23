@@ -28,7 +28,7 @@ in
         '';
       };
       httpOrigin = mkOption {
-        type = types.string;
+        type = types.str;
         default = "";
         description = mdDoc ''
           Your server url (e.g. https://actualbudget.example.com).
