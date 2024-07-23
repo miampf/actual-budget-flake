@@ -8,7 +8,8 @@
   outputs = { self, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       {
-        nixosModules.actual-server = ./module.nix;
       }
-    );
+    ) // {
+      nixosModules.actual-server = ./module.nix;
+    };
 }
