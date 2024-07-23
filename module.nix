@@ -67,7 +67,7 @@ in
 
   config = mkIf cfg.enable (mkMerge [
     {
-      virtualisation.oci-containers."actual-server" = {
+      virtualisation.oci-containers.containers."actual-server" = {
         autoStart = true;
         image = "docker.io/actualbudget/actual-server:latest";
         ports = ["${builtins.toString cfg.port}:5006"];
