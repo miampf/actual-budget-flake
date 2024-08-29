@@ -68,6 +68,7 @@ in
   config = mkIf cfg.enable (mkMerge [
     {
       systemd.tmpfiles.rules = ["d ${builtins.toString cfg.dataPath} 1666 root root -"];
+      virtualisation.docker.enable = true;
       virtualisation.oci-containers.containers."actual-server" = {
         autoStart = true;
         image = "docker.io/actualbudget/actual-server:latest";
