@@ -2,10 +2,10 @@
 
 let
   name = "actual-budget";
-  version = "24.8.0";
+  version = "24.9.0";
   src = fetchurl {
     url = "https://github.com/actualbudget/actual/releases/download/v${version}/Actual-linux.AppImage";
-    sha256 = "sha256-bZuGpPQGHrnB5ijdy2Y1r87gKEojv9Ed2BsFNNFR6gw=";
+    sha256 = "sha256-apjYVP25+FQAVgti9hvjStBEaKlJZ50PrVPny/ZsLMo=";
   };
   appimageContents = appimageTools.extractType2 {inherit name src;};
   in
